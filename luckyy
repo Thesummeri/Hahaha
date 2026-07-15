@@ -1,0 +1,783 @@
+package Programs;
+
+class Student
+{
+    String name;
+    int age;
+    String gender;
+    String college_name;
+    String course;
+    int Sem;
+    String USN;
+
+    void display()
+    {
+        System.out.println("----- Student Details -----");
+        System.out.println("Name = " + name);
+        System.out.println("Age = " + age);
+        System.out.println("Gender = " + gender);
+        System.out.println("----- College Details -----");
+        System.out.println("College Name = " + college_name);
+        System.out.println("Course = " + course);
+        System.out.println("Semester = " + Sem);
+        System.out.println("USN = " + USN);
+    }
+}
+
+public class Program
+{
+    public static void main(String[] args)
+    {
+        Student S1 = new Student();
+
+        S1.name = "XYZ";
+        S1.age = 20;
+        S1.gender = "Female";
+        S1.college_name = "SJBIT";
+        S1.course = "MCA";
+        S1.Sem = 2;
+        S1.USN = "DDM25MCA9711";
+
+        S1.display();
+    }
+
+}
+
+#2package Programs;
+import java.util.Scanner;
+
+class Account
+{
+    String name;
+    int accountNumber;
+    String accountType;
+    double balance;
+
+    Account()
+    {
+        name = "Unknown";
+        accountNumber = 0;
+        accountType = "Not Assigned";
+        balance = 0.0;
+        System.out.println("Default Constructor called");
+    }
+
+    Account(String name, int accNo, String type, double bal)
+    {
+        this.name = name;
+        this.accountNumber = accNo;
+        this.accountType = type;
+        this.balance = bal;
+        System.out.println("Parameterized Constructor called");
+    }
+
+    void display()
+    {
+        System.out.println("\nAccount Holder : " + name);
+        System.out.println("\nAccount Number : " + accountNumber);
+        System.out.println("\nAccount Type : " + accountType);
+        System.out.println("\nBalance : " + balance);
+    }
+
+    void deposit(double amount)
+    {
+        balance = balance + amount;
+        System.out.println(amount + " deposited Successfully");
+    }
+
+    void withdraw(double amount)
+    {
+        if(amount <= balance)
+        {
+            balance = balance - amount;
+            System.out.println(amount + " withdrawn Successfully");
+        }
+        else
+        {
+            System.out.println("Insufficient Balance");
+        }
+    }
+
+    @Override
+    protected void finalize()
+    {
+        System.out.println("Account Closed " + name);
+    }
+}
+
+public class BankDemo
+{
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+
+        Account a1 = new Account();
+        a1.display();
+
+        System.out.println("\nEnter Account Holder Name:");
+        String name = sc.nextLine();
+
+        System.out.println("Enter Account Number:");
+        int accNo = sc.nextInt();
+
+        System.out.println("Enter Balance:");
+        double bal = sc.nextDouble();
+
+        sc.nextLine();
+
+        Account a2 = new Account(name, accNo, "type", bal);
+        a2.display();
+
+        System.out.println("Enter amount to deposit:");
+        double dep = sc.nextDouble();
+        a2.deposit(dep);
+
+        System.out.println("Enter amount to withdraw:");
+        double wd = sc.nextDouble();
+        a2.withdraw(wd);
+
+        a2.display();
+
+        a1 = null;
+        a2 = null;
+
+        System.gc();
+
+        System.out.println("End of program");
+        sc.close();
+    }
+}
+
+#3
+package Programs;
+
+class IBM
+{
+    void job(String qualification, int Experience)
+    {
+        if(qualification.equals("MCA") && Experience >= 0 && Experience <=2)
+        {
+            System.out.println("Hired");
+        }
+        else
+        {
+            System.out.println("Disqualified");
+        }
+    }
+
+}
+class Naukri
+{
+    static void apply(IBM a2, String qualification, int Experience)
+    {
+        a2.job(qualification, Experience);
+    }
+}
+
+class Customer
+{
+    public static void main(String[] args)
+    {
+        IBM a1 = new IBM();
+
+        String qualification = "MCA";
+        int Experience = 1;
+
+        Naukri.apply(a1, qualification, Experience);
+    }
+}
+
+#4
+package Programs;
+
+
+
+class Engine
+{
+    void start()
+    {
+        System.out.println("Engine starts");
+    }
+}
+
+class Car
+{
+    Engine engine = new Engine();
+
+    void startCar()
+    {
+        engine.start();
+        System.out.println("Car starts");
+    }
+}
+
+class Teacher
+{
+    String name;
+
+    Teacher(String name)
+    {
+        this.name = name;
+    }
+}
+
+class College
+{
+    Teacher teacher;
+
+    College(Teacher teacher)
+    {
+        this.teacher = teacher;
+    }
+
+    void showTeacher()
+    {
+        System.out.println("Teacher : " + teacher.name);
+    }
+}
+
+class Library
+{
+    void issueBook()
+    {
+        System.out.println("Book Issued");
+    }
+}
+
+class Reader
+{
+    void useLibrary(Library library)
+    {
+        library.issueBook();
+    }
+}
+
+public class MainApp
+{
+    public static void main(String[] args)
+    {
+        Car car = new Car();
+        car.startCar();
+
+        Teacher teacher = new Teacher("Tanvi");
+        College college = new College(teacher);
+        college.showTeacher();
+
+        Reader reader = new Reader();
+        Library library = new Library();
+        reader.useLibrary(library);
+    }
+}
+
+#5
+package Programs;
+
+
+import java.util.Scanner;
+
+class whatsappv1 {
+
+    void features() {
+        System.out.println("Old WhatsApp Features:");
+        System.out.println("1. Text Messaging");
+        System.out.println("2. Send Photos");
+    }
+}
+
+class whatsappv2 extends whatsappv1 {
+
+    @Override
+    void features() {
+        super.features();
+        System.out.println("New WhatsApp Features:");
+        System.out.println("3. Voice Call");
+        System.out.println("4. Video Call");
+    }
+
+    void operation() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("In which operation do you want to perform?");
+        System.out.println("1. Text Messaging");
+        System.out.println("2. Send Photos");
+        System.out.println("3. Voice Call");
+        System.out.println("4. Video Call");
+
+        System.out.println("Enter your choice:");
+        int choice = sc.nextInt();
+
+        switch (choice) {
+            case 1:
+                System.out.println("Text Message Sent Successfully");
+                break;
+
+            case 2:
+                System.out.println("Photo Sent Successfully");
+                break;
+
+            case 3:
+                System.out.println("Voice Call Started");
+                break;
+
+            case 4:
+                System.out.println("Video Call Started");
+                break;
+
+            default:
+                System.out.println("Invalid Choice");
+        }
+
+        sc.close();
+    }
+}
+
+public class Whatsapp {
+
+    public static void main(String[] args) {
+        whatsappv2 w1 = new whatsappv2();
+        w1.features();
+        w1.operation();
+    }
+}
+
+#6
+package Programs;
+
+class Service {
+    void booking() {
+        System.out.println("IRCTC Service Booking");
+    }
+}
+
+class TrainTicket extends Service {
+    void booking() {
+        System.out.println("Train Ticket Booked Successfully");
+    }
+}
+
+class FlightTicket extends Service {
+    void booking() {
+        System.out.println("Flight Ticket Booked");
+    }
+}
+
+class HotelBook extends Service {
+    void booking() {
+        System.out.println("Hotel Booked");
+    }
+}
+
+class BusTicket extends Service {
+    void booking() {
+        System.out.println("Bus Ticket Booked");
+    }
+}
+
+class ECatering extends Service {
+    void booking() {
+        System.out.println("Food Ordered Successfully");
+    }
+}
+
+class IRCTC {
+    static void reservation(Service s1) {
+        s1.booking();
+    }
+}
+
+public class MainClass {
+    public static void main(String[] args) {
+
+        TrainTicket t1 = new TrainTicket();
+        FlightTicket f1 = new FlightTicket();
+        HotelBook h1 = new HotelBook();
+        BusTicket b1 = new BusTicket();
+        ECatering e1 = new ECatering();
+
+        IRCTC.reservation(t1);
+        IRCTC.reservation(f1);
+        IRCTC.reservation(h1);
+        IRCTC.reservation(b1);
+        IRCTC.reservation(e1);
+    }
+}
+
+#7
+package Programs;
+
+import java.util.Scanner;
+
+
+interface Scholarship {
+ void applyScholarship();
+}
+
+
+abstract class Student {
+
+ String name;
+ String usn;
+ String course;
+ double percentage;
+ String college;
+
+ abstract void displayDetails();
+}
+
+
+class MCAStudent extends Student implements Scholarship {
+
+ @Override
+ void displayDetails() {
+     System.out.println("\n----- Student Details -----");
+     System.out.println("Name       : " + name);
+     System.out.println("USN        : " + usn);
+     System.out.println("Course     : " + course);
+     System.out.println("Percentage : " + percentage + "%");
+     System.out.println("College    : " + college);
+ }
+
+ @Override
+ public void applyScholarship() {
+     if (percentage >= 75) {
+         System.out.println("Scholarship Approved.");
+     } else {
+         System.out.println("Scholarship Not Approved.");
+     }
+ }
+}
+
+
+public class Main {
+
+ public static void main(String[] args) {
+
+     Scanner sc = new Scanner(System.in);
+     MCAStudent student = new MCAStudent();
+
+     System.out.print("Enter Name: ");
+     student.name = sc.nextLine();
+
+     System.out.print("Enter USN: ");
+     student.usn = sc.nextLine();
+
+     System.out.print("Enter Course: ");
+     student.course = sc.nextLine();
+
+     System.out.print("Enter Percentage: ");
+     student.percentage = sc.nextDouble();
+     sc.nextLine();
+
+     System.out.print("Enter College: ");
+     student.college = sc.nextLine();
+
+     student.displayDetails();
+     student.applyScholarship();
+
+     sc.close();
+ }
+}
+#8
+package Programs;
+class InstagramUser {
+    void displayUser() {
+        String username = "Nandini";
+        System.out.println("Username: " + username);
+    }
+}
+
+interface Notification {
+    void send();
+}
+
+class LikeNotification implements Notification {
+    public void send() {
+        System.out.println("Like Notification Sent");
+    }
+}
+
+class CommentNotification implements Notification {
+    public void send() {
+        System.out.println("Comment Notification Sent");
+    }
+}
+
+class InstagramAccount {
+    void showAccountType() {
+        System.out.println("Instagram Account");
+    }
+}
+
+class PersonalAccount extends InstagramAccount {
+    void showAccountType() {
+        System.out.println("Personal Account");
+    }
+}
+
+class BusinessAccount extends InstagramAccount {
+    void showAccountType() {
+        System.out.println("Business Account");
+    }
+}
+
+interface PostFeature {
+    void createPost();
+}
+
+interface ReelFeature {
+    void uploadReel();
+}
+
+class Creator implements PostFeature, ReelFeature {
+    public void createPost() {
+        System.out.println("Creator created a post");
+    }
+
+    public void uploadReel() {
+        System.out.println("Creator uploaded a reel");
+    }
+}
+
+class Viewer implements PostFeature {
+    public void createPost() {
+        System.out.println("Viewer created a post");
+    }
+}
+
+class InstagramApp {
+    Notification notification;
+
+    InstagramApp(Notification notification) {
+        this.notification = notification;
+    }
+
+    void notifyUser() {
+        notification.send();
+    }
+}
+
+public class SolidInstagramDemo {
+    public static void main(String[] args) {
+
+        InstagramUser user = new InstagramUser();
+        user.displayUser();
+
+        Notification n = new LikeNotification();
+        InstagramApp app = new InstagramApp(n);
+        app.notifyUser();
+
+        InstagramAccount acc1 = new PersonalAccount();
+        InstagramAccount acc2 = new BusinessAccount();
+
+        acc1.showAccountType();
+        acc2.showAccountType();
+
+        Creator c = new Creator();
+        c.createPost();
+        c.uploadReel();
+
+        Viewer v = new Viewer();
+        v.createPost();
+    }
+}
+#9
+package Programs;
+
+
+class ClassicSingleton {
+
+    private static ClassicSingleton instance = null;
+
+    private ClassicSingleton() {
+        System.out.println("Singleton Object Created");
+    }
+
+    public static ClassicSingleton getInstance() {
+        if (instance == null) {
+            instance = new ClassicSingleton();
+        }
+        return instance;
+    }
+}
+
+public class Sam {
+
+    public static void main(String[] args) {
+
+        ClassicSingleton obj1 = ClassicSingleton.getInstance();
+        ClassicSingleton obj2 = ClassicSingleton.getInstance();
+
+        System.out.println(obj1.hashCode());
+        System.out.println(obj2.hashCode());
+
+        if (obj1 == obj2) {
+            System.out.println("Both references point to the same object");
+        }
+    }
+}
+#10
+package Programs;
+
+interface Notification {
+    void send();
+}
+
+class EmailNotification implements Notification {
+    public void send() {
+        System.out.println("Sending Email Notification");
+    }
+}
+
+class SMSNotification implements Notification {
+    public void send() {
+        System.out.println("Sending SMS Notification");
+    }
+}
+
+class WhatsAppNotification implements Notification {
+    public void send() {
+        System.out.println("Sending WhatsApp Notification");
+    }
+}
+
+class NotificationFactory {
+    public static Notification getNotification(String type) {
+
+        if (type.equalsIgnoreCase("EMAIL"))
+            return new EmailNotification();
+
+        else if (type.equalsIgnoreCase("SMS"))
+            return new SMSNotification();
+
+        else if (type.equalsIgnoreCase("WHATSAPP"))
+            return new WhatsAppNotification();
+
+        return null;
+    }
+}
+
+public class FactoryDemo {
+
+    public static void main(String[] args) {
+
+        Notification notification = NotificationFactory.getNotification("Email");
+        notification.send();
+    }
+}
+#11
+package Programs;
+
+import java.util.ArrayList;
+import java.util.List;
+
+interface Observer {
+    void update(String message);
+}
+
+class Subscriber implements Observer {
+
+    private String name;
+
+    public Subscriber(String name) {
+        this.name = name;
+    }
+
+    public void update(String message) {
+        System.out.println(name + " received notification: " + message);
+    }
+}
+
+interface Subject {
+    void addObserver(Observer o);
+    void removeObserver(Observer o);
+    void notifyObservers(String message);
+}
+
+class YouTubeChannel implements Subject {
+
+    private List<Observer> observers = new ArrayList<>();
+
+    public void addObserver(Observer o) {
+        observers.add(o);
+    }
+
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    public void notifyObservers(String message) {
+        for (Observer o : observers) {
+            o.update(message);
+        }
+    }
+
+    public void uploadVideo(String title) {
+        System.out.println("New Video Uploaded: " + title);
+        notifyObservers(title);
+    }
+}
+
+public class ObserverDemo {
+
+    public static void main(String[] args) {
+
+        YouTubeChannel channel = new YouTubeChannel();
+
+        Subscriber s1 = new Subscriber("Gowri");
+        Subscriber s2 = new Subscriber("Sambrud");
+
+        channel.addObserver(s1);
+        channel.addObserver(s2);
+
+        channel.uploadVideo("Java Tutorial");
+    }
+}
+#12
+package Programs;
+
+class Box<T> {
+
+    private T item;
+
+    public void setItem(T item) {
+        this.item = item;
+    }
+
+    public T getItem() {
+        return item;
+    }
+}
+
+class Utility {
+
+    public static <T> void printArray(T[] arr) {
+        for (T element : arr) {
+            System.out.print(element + " ");
+        }
+        System.out.println();
+    }
+}
+
+public class SimpleGenerics {
+
+    public static void main(String[] args) {
+
+        Box<String> stringBox = new Box<>();
+        stringBox.setItem("Practice Java");
+        System.out.println("String Box: " + stringBox.getItem());
+
+        Box<Integer> intBox = new Box<>();
+        intBox.setItem(100);
+        System.out.println("Integer Box: " + intBox.getItem());
+
+        Integer[] nums = {1, 2, 3, 4, 5};
+        String[] names = {"Sachin", "Nandini", "Ranjith"};
+
+        System.out.print("Numbers: ");
+        Utility.printArray(nums);
+
+        System.out.print("Names: ");
+        Utility.printArray(names);
+    }
+}
+
